@@ -429,8 +429,7 @@ private:
     void update()
     {
         QScrollBar *scrollbar = m_editor->verticalScrollBar();
-        QSizeF sz = m_editor->document()->size();
-        m_lineCount = sz.toSize().height() + 1;
+        m_lineCount = qMax(1, m_editor->document()->blockCount());
         int w = scrollbar->width();
         int h = scrollbar->height();
         m_factor = m_lineCount <= h ? 1.0 : h / static_cast<qreal>(m_lineCount);
